@@ -59,8 +59,13 @@ activitiesUI <- function(id) {
         width = 12,
         style = "background-color: #f9f9f9; border: 2px solid #ff7f0e; border-radius: 10px; padding: 0px; display: inline-block; vertical-align: top; width: 100%;", 
         tags$div(
+<<<<<<< HEAD:Aplikacja/pages/activities.R
           style = "display: flex; justify-content: center; align-items: center;",
           plotlyOutput(ns("timeline"))%>%
+=======
+          style = "display: flex; justify-content: center; align-items: center; height: 100%;",
+          plotlyOutput(ns("timeline"), height = "100%", width = "1100px" )%>%
+>>>>>>> 493ce1dff30f9ef90f29cd519fd1b01c25c9c225:kody/pages/activities.R
             shinycssloaders::withSpinner(color = "#158cba", type=6)
         )
       )) 
@@ -149,7 +154,6 @@ activitiesUI <- function(id) {
     fluidRow(style = "height: 80px;")
   )
 }
-
 
 # funkcje do generowania radaru
 generate_hours <- function(start_hour, end_hour) {
@@ -249,8 +253,6 @@ activitiesServer <- function(id) {
       return(updated_data)
     })
     
-    
-    
     output$timeline <- renderPlotly({
       df <- selected_df()
       req(df, nrow(df) > 0)
@@ -346,8 +348,12 @@ activitiesServer <- function(id) {
       labels <- ifelse(as.numeric(sub(":.*", "", colnames(radar_data))) %% 2 == 0,
                        colnames(radar_data), "")
       radarchart(radar_data,
+<<<<<<< HEAD
                  pcol = "#dc143c",  # Czerwone obramowanie
                  pfcol = rgb(0.85, 0.05, 0.05, 0.5),  plwd = 2,
+=======
+                 pcol = "#158cba", pfcol = rgb(0, 0.4, 1, 0.5), plwd = 2,
+>>>>>>> main
                  cglty = 1, axislabcol = "grey",
                  cglcol = 'grey', vlcex = 0.8, title = '',
                  pty = 32, vlabels = labels)
@@ -452,7 +458,7 @@ activitiesServer <- function(id) {
         group_by(name, day) %>%
         summarise(total_duration = sum(duration.minutes), .groups = 'drop')
       
-      # Wybieramy wiersz z maksymalnym czasem
+      # Wiersz z maksymalnym czasem
       max_row <- corrected_data %>% filter(total_duration == max(total_duration)) %>% slice(1)
       paste("<span style='white-space: nowrap;'>Longest Duration by <strong>", max_row$name, "</strong></span>")
       
@@ -469,7 +475,7 @@ activitiesServer <- function(id) {
         group_by(name, day) %>%
         summarise(total_duration = sum(duration.minutes), .groups = 'drop')
       
-      # Wybieramy wiersz z minimalnym czasem
+      # Wiersz z minimalnym czasem
       min_row <- corrected_data %>% filter(total_duration == min(total_duration)) %>% slice(1)
       paste0(round(min_row$total_duration, 2), " minutes")
     })
@@ -485,7 +491,7 @@ activitiesServer <- function(id) {
         group_by(name, day) %>%
         summarise(total_duration = sum(duration.minutes), .groups = 'drop')
       
-      # Wybieramy wiersz z minimalnym czasem
+      # Wiersz z minimalnym czasem
       min_row <- corrected_data %>% filter(total_duration == min(total_duration)) %>% slice(1)
       paste("<span style='white-space: nowrap;'>Shortest Duration by <strong>", min_row$name, "</strong></span>")
       

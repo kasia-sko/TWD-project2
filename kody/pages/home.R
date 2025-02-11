@@ -1,7 +1,7 @@
 # Wczytywanie ramek i funkcje pewne do ramek
-zuzia_apps_df <- read.csv("nasz_dzienZuzia.csv",sep=";")
-kasia_apps_df <- read.csv("nasz_dzienKasia.csv",sep=";")
-milosz_apps_df <- read.csv("nasz_dzienMilosz.csv",sep=";")
+zuzia_apps_df <- read.csv("data/nasz_dzienZuzia.csv",sep=";")
+kasia_apps_df <- read.csv("data/nasz_dzienKasia.csv",sep=";")
+milosz_apps_df <- read.csv("data/nasz_dzienMilosz.csv",sep=";")
 
 process_daily_data <- function(data, user) {
   data <- data %>%
@@ -40,17 +40,17 @@ kasia_apps_df <- process_daily_data(kasia_apps_df, "Kasia")
 zuzia_apps_df <- process_daily_data(zuzia_apps_df, "Zuzia")
 milosz_apps_df <- process_daily_data(milosz_apps_df, "Milosz")
 
-zuzia_apps_df1 <- read.csv("nasz_dzienZuzia.csv",sep=";")
-kasia_apps_df1 <- read.csv("nasz_dzienKasia.csv",sep=";")
-milosz_apps_df1 <- read.csv("nasz_dzienMilosz.csv",sep=";")
+zuzia_apps_df1 <- read.csv("data/nasz_dzienZuzia.csv",sep=";")
+kasia_apps_df1 <- read.csv("data/nasz_dzienKasia.csv",sep=";")
+milosz_apps_df1 <- read.csv("data/nasz_dzienMilosz.csv",sep=";")
 
 # Ostateczna ramka z dokładnością do aplikacji
 apps_df <- bind_rows(kasia_apps_df, zuzia_apps_df, milosz_apps_df)
 
 # Wczytanie aktywnosci
-kasia_activities_df <- read.csv("kasia.csv")
-zuzia_activities_df <- read.csv("zuzia.csv")
-milosz_activities_df <- read.csv("milosz.csv")
+kasia_activities_df <- read.csv("data/kasia.csv")
+zuzia_activities_df <- read.csv("data/zuzia.csv")
+milosz_activities_df <- read.csv("data/milosz.csv")
 
 kasia_activities_df$name <- "Kasia"
 zuzia_activities_df$name <- "Zuzia"

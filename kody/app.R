@@ -4,7 +4,6 @@ library(dplyr)
 library(plotly)
 library(fmsb)
 library(ggplot2)
-library(fmsb)
 library(lubridate)
 library(tidyr)
 library(shinydashboard)
@@ -31,7 +30,7 @@ my_theme <- bs_theme(
 )
 
 ui <- fluidPage(
-  title = "MINI DAY",
+  title = "MY DAY",
   theme = my_theme,
   tags$style(HTML("
     .nav-tabs {
@@ -50,7 +49,6 @@ ui <- fluidPage(
     }
   ")),
   tabsetPanel(
-    #type = "tabs", # Można zmienić na "pills"
     tabPanel("Home", homeUI("home"), icon = icon("cat")),
     tabPanel("Apps", appsUI("apps"), icon = icon("mobile")),
     tabPanel("Activities", activitiesUI("activities"), icon = icon("person-running")),

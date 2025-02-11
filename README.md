@@ -1,4 +1,5 @@
-MyDayApp
+## MyDayApp
+
 This project showcases data we collected from 9th December to 12th January. During this time, we carefully tracked our daily activities and phone usage. The app is designed to provide meaningful insights into how time is spent throughout the day, highlighting patterns in app usage and daily routines.
 
 Here’s a brief overview of what each page offers:
@@ -9,6 +10,7 @@ Here’s a brief overview of what each page offers:
 
 3.My Day: Access statistics for each user, including our daily activities and app usage. This page provides a deeper understanding of each person’s habits.
 
-Link to the app: https://zielim.shinyapps.io/kody/
+Link to the app:
+https://zielim.shinyapps.io/kody/
 
 Authors: Katarzyna Skoczylas, Zuzanna Zalewska, Miłosz Zieliński.

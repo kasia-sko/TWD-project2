@@ -67,7 +67,11 @@ myDayUI <- function(id) {
                style = "background-color: #f9f9f9; border: 2px solid #ff7f0e; border-radius: 10px; padding: 0px; display: inline-block; vertical-align: top;", 
                tags$div(
                  style = "display: flex; justify-content: center; align-items: center; height: 100%;",
+<<<<<<< HEAD:Aplikacja/pages/myDay.R
                  plotlyOutput(ns("barPlot"), height = "100%", width = "156%")%>%
+=======
+                 plotlyOutput(ns("barPlot"), height = "100%", width = "1100px")%>%
+>>>>>>> 493ce1dff30f9ef90f29cd519fd1b01c25c9c225:kody/pages/myDay.R
                    shinycssloaders::withSpinner(color = "#158cba", type=6)
                )
              )
@@ -305,7 +309,11 @@ myDayServer <- function(id) {
               y = ~round(total_minutes),
               type = 'bar',
               name = 'Czas aktywności',
+<<<<<<< HEAD
               marker = list(color = "#ff7f0e"),
+=======
+              marker = list(color = '#158cba'),
+>>>>>>> main
               hoverinfo = 'text',
               text = ~paste('Activity: ', activity.name, 
                             '<br>Time : ', round(total_minutes),' min'),

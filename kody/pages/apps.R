@@ -1,8 +1,6 @@
 appsUI <- function(id) {
   ns <- NS(id)
   
-  
-  
   tags$div(
     class = "container-fluid",
     
@@ -15,6 +13,7 @@ appsUI <- function(id) {
       }
     ")),
     
+<<<<<<< HEAD
     box(
       title = "",
       solidHeader = TRUE,       
@@ -67,7 +66,7 @@ appsUI <- function(id) {
                       style = "background-color: #f9f9f9; border: 2px solid #ff7f0e; border-radius: 10px; padding: 0px; display: inline-block; vertical-align: top;", 
                       tags$div(
                         style = "display: flex; justify-content: center; align-items: center; height: 100%;",
-                        plotlyOutput(ns("appsPlotLine"), height = "100%")%>%
+                        plotlyOutput(ns("appsPlotLine"), height = "100%", width = "1100px")%>%
                           shinycssloaders::withSpinner(color = "#158cba", type=6)
                       )
                     )
@@ -87,7 +86,7 @@ appsUI <- function(id) {
                         uiOutput(ns("text2"))
                       )
                     )),
-             column(6,
+             column(9,
                     box(
                       title = "", 
                       solidHeader = TRUE,                     
@@ -96,26 +95,60 @@ appsUI <- function(id) {
                       style = "background-color: #f9f9f9; border: 2px solid #dc143c; border-radius: 10px; padding: 0px; display: inline-block; vertical-align: top;", 
                       tags$div(
                         style = "display: flex; justify-content: center; align-items: center; height: 100%;",
-                        plotlyOutput(ns("appsBarPlot"), height = "100%", width = "100%")
+                        plotlyOutput(ns("appsBarPlot"), height = "100%", width = "1100px")
                       )
                     ))),
     
     fluidRow(style = "height: 80px;")
     
+=======
+    fluidRow(column(
+      3,
+      selectInput(
+        ns("appChoice"),
+        "Choose an application",
+        choices = unique(apps_df$application),
+        selected = "Duolingo"
+      )
+    ),
+    column(
+      3,
+      dateRangeInput(
+        ns("dateRange"),
+        label = "Choose date range",
+        start = min(apps_df$date),
+        end = max(apps_df$date),
+        min = min(apps_df$date),
+        max = max(apps_df$date),
+        format = "yyyy-mm-dd",
+        separator = " to "
+      )
+    )),
+    fluidRow(column(3, textOutput(ns(
+      "text2"
+    ))),
+    column(8, plotlyOutput(
+      ns("appsPlotLine")
+    ))),
+    fluidRow(column(1,
+                    textOutput(ns(
+                      "text1"
+                    ))),
+             column(7,
+                    plotlyOutput(
+                      ns("appsBarPlot")
+                    )))
+
+>>>>>>> main
   )
 }
 
 appsServer <- function(id) {
   moduleServer(id, function(input, output, session) {
     
-    output$text1<-renderText("This chart shows how much time each of us spent on selected application each day. It is possible to select a date range. Thanks to this, we are able to compare data over a chosen period, e.g. during the Christmas break.
-
-")
+    output$text1<-renderText("This chart shows how much time each of us spent on selected application each day. It is possible to select a date range. Thanks to this, we are able to compare data over a chosen period, e.g. during the Christmas break.")
     
-    output$text2<-renderText("Here we have a summary of the entire data collection period. The bar chart shows which user spent the most time and which the least time using a specific application.
-")
-    
-    
+    output$text2<-renderText("Here we have a summary of the entire data collection period. The bar chart shows which user spent the most time and which the least time using a specific application.")
     
     output$appsPlotLine <- renderPlotly({
       plot_data <- apps_df %>%
@@ -131,7 +164,11 @@ appsServer <- function(id) {
         labs(
           x = "Date",
           y = "Time [min]",
+<<<<<<< HEAD
           color = "Users"
+=======
+          color = "user"
+>>>>>>> main
         ) +
         scale_color_manual(values = c(
           "Milosz" = '#158cba', 
@@ -146,13 +183,16 @@ appsServer <- function(id) {
         config(displayModeBar = FALSE)
     })
     
-    
     output$appsBarPlot<-renderPlotly({
       filtered_data <- apps_df %>%
         filter(date>=input$dateRange[1] & date<=input$dateRange[2]) %>%
         group_by(application,user) %>%
         summarise(total_minutes = sum(time_spent, na.rm=TRUE),.groups = 'drop')
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> main
       user_colors = c("Milosz" = '#158cba', 
                       "Kasia" = "#ff7f0e",
                       "Zuzia" = "#dc143c" )
